@@ -1,4 +1,4 @@
-package com.example.zadanie31.api_response;
+package com.example.zadanie31.apiresponse;
 
 import lombok.Data;
 

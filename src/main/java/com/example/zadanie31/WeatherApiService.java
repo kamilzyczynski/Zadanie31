@@ -1,6 +1,7 @@
 package com.example.zadanie31;
 
-import com.example.zadanie31.api_response.WeatherApiResponseDto;
+import com.example.zadanie31.apiresponse.WeatherApiResponseDto;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
