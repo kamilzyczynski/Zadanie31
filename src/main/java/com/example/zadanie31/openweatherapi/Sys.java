@@ -3,7 +3,7 @@ package com.example.zadanie31.openweatherapi;
 import lombok.Data;
 
 @Data
-public class Sys {
+class Sys {
     private int type;
     private int id;
     private String country;

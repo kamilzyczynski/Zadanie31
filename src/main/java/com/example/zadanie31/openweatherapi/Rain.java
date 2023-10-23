@@ -3,6 +3,6 @@ package com.example.zadanie31.openweatherapi;
 import lombok.Data;
 
 @Data
-public class Rain {
+class Rain {
     private double _1h;
 }
