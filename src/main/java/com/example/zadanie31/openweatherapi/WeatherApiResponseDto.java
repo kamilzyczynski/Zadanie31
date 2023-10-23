@@ -1,11 +1,11 @@
-package com.example.zadanie31.apiresponse;
+package com.example.zadanie31.openweatherapi;
 
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class WeatherApiResponseDto {
+class WeatherApiResponseDto {
     private Coord coord;
     private List<Weather> weather;
     private String base;

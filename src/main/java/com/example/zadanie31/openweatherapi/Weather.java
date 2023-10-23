@@ -1,4 +1,4 @@
-package com.example.zadanie31.apiresponse;
+package com.example.zadanie31.openweatherapi;
 
 import lombok.Data;
 

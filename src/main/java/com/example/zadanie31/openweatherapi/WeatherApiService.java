@@ -1,25 +1,33 @@
-package com.example.zadanie31;
+package com.example.zadanie31.openweatherapi;
 
-import com.example.zadanie31.apiresponse.WeatherApiResponseDto;
+import com.example.zadanie31.CityNotFoundException;
+import com.example.zadanie31.WeatherDisplayDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class WeatherApiService {
+    private String openWeatherApiKey;
 
-    public WeatherApiResponseDto getWeatherInCity(String city) {
+    public WeatherApiService(@Value("${my.app.apiKey}") String openWeatherApiKey) {
+        this.openWeatherApiKey = openWeatherApiKey;
+    }
+
+    public WeatherDisplayDto getWeatherInCity(String city) {
         try {
             RestTemplate restTemplate = new RestTemplate();
-            String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=407fb443f6946a53f2123b6791efde13&units=metric";
+            String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + openWeatherApiKey + "&units=metric";
 
-            return restTemplate.getForObject(url, WeatherApiResponseDto.class);
+            WeatherApiResponseDto apiResponse = restTemplate.getForObject(url, WeatherApiResponseDto.class);
+            return weatherToDisplayMapper(apiResponse);
+
         } catch (Exception e) {
             throw new CityNotFoundException();
         }
     }
 
-    public WeatherDisplayDto weatherToDisplayMapper(WeatherApiResponseDto weatherApiResponseDto) {
+    private WeatherDisplayDto weatherToDisplayMapper(WeatherApiResponseDto weatherApiResponseDto) {
         return WeatherDisplayDto.builder()
                 .cityName(weatherApiResponseDto.getName())
                 .visibility(weatherApiResponseDto.getVisibility())
